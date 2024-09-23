@@ -44,7 +44,7 @@ const LandingPage = () => {
               variants={SlideDown(0.5)}
               initial="hidden"
               whileInView="show"
-              className='relative text-3xl lg:text-5xl xl:text-8xl font-bold uppercase text-titleColor'>
+              className='mt-5 relative md:text-4xl lg:text-5xl xl:text-6xl font-bold uppercase text-titleColor'>
               Better Solutions to
             </motion.h1>
 
@@ -52,7 +52,7 @@ const LandingPage = () => {
               variants={SlideDown(1)}
               initial="hidden"
               whileInView="show"
-              className='relative text-3xl lg:text-5xl xl:text-8xl font-bold uppercase text-titleColor'>
+              className='relative  text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold uppercase text-titleColor'>
               <span className="text-buttonBackground">{words[index]} </span> PC Registration
             </motion.h1>
 
