@@ -21,7 +21,7 @@ const Navbar = () => {
   const handleMenuClick = (menuItem) => setActiveMenu(menuItem.key);
 
   return (
-    <nav className="bg-[#000F1F] fixed top-0 left-0 right-0 h-[14vh] z-50 shadow-md p-4 font-poppins">
+    <nav className="bg-background fixed top-0 left-0 right-0 h-[14vh] z-50 shadow-md p-4 font-serif">
       <div className="flex justify-between sm:justify-evenly items-center h-full px-4 md:px-8">
         <div className="flex items-center gap-2">
           <img src={computerIcon} className="h-10 w-10 sm:h-12 sm:w-12 rounded-full" alt="Computer Icon" />
@@ -33,13 +33,13 @@ const Navbar = () => {
             selectedKeys={[activeMenu]}
             className="flex gap-3"
             onClick={handleMenuClick}
-            style={{ backgroundColor: 'transparent' }} // Set menu background to transparent
+            style={{ backgroundColor: 'transparent' }} 
           >
             {NavMenu.map((menu) => (
               <Item 
                 key={menu.title} 
-                style={{ backgroundColor: 'transparent' }} // Set item background to transparent
-                className="text-lg md:text-xl"
+                style={{ backgroundColor: 'transparent' }} 
+                className="text-lg md:text-xl font-serif"
               >
                 <a
                   href={`#${menu.target}`}
@@ -77,7 +77,7 @@ const Navbar = () => {
       </div>
 
       {isMenuOpen && (
-        <div className="md:hidden absolute top-[10vh] left-0 right-0 bg-[#000F1F] shadow-md">
+        <div className="md:hidden absolute top-[10vh] left-0 right-0 bg-background shadow-md ">
           <Menu
             mode="vertical"
             selectedKeys={[activeMenu]}
@@ -91,6 +91,7 @@ const Navbar = () => {
                 style={{ backgroundColor: 'transparent' }} // Set item background to transparent
               >
                 <a
+                 className='font-serif'
                   href={`#${menu.target}`}
                   style={{
                     display: 'inline-block',

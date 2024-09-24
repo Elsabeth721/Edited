@@ -34,16 +34,16 @@ const LandingPage = () => {
   }, []);
 
   return (
-    <main className='bg-[#001F3D] min-h-screen flex justify-center items-center px-20 mt-20'>
-      <div className='container mx-auto py-16 px-4'>
+    <main id='#home-section' className='bg-[#001F3D] min-h-screen flex justify-center items-center px-20 mt-20 '>
+      <div className='container mx-auto py-16 px-4 '>
         <Row gutter={24} align="middle">
           <Col span={24} md={12}>
-            <div className='space-y-5 text-center md:text-left'>
+            <div className='space-y-5 text-center md:text-left font-serif'>
               <motion.h1
                 variants={SlideDown(0.5)}
                 initial="hidden"
                 whileInView="show"
-                className='text-xl lg:text-3xl xl:text-5xl font-bold uppercase text-[#CCFFFF]'>
+                className='text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold uppercase text-[#CCFFFF] '>
                 Better Solutions to
               </motion.h1>
 
@@ -51,7 +51,7 @@ const LandingPage = () => {
                 variants={SlideDown(1)}
                 initial="hidden"
                 whileInView="show"
-                className='text-xl lg:text-3xl xl:text-5xl font-bold uppercase text-[#CCFFFF]'>
+                className='text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold uppercase text-[#CCFFFF]'>
                 <span className="text-[#00AED9]">{words[index]} </span> PC Registration
               </motion.h1>
 
@@ -59,7 +59,7 @@ const LandingPage = () => {
                 variants={SlideDown(1.5)}
                 initial="hidden"
                 whileInView="show"
-                className='text-base md:text-lg text-[#CCFFFF]'>
+                className='text-base md:text-lg text-[#CCFFFF] font-serif'>
                 PC registration made effortless with our cutting-edge platform. Whether you're
                 looking to streamline processes, enhance security, or boost efficiency, we
                 provide the tools and support you need. Experience a hassle-free registration
@@ -72,9 +72,9 @@ const LandingPage = () => {
                 whileInView="show">
                 <Button
                   type="primary"
-                  className='mt-6 flex items-center'
+                  className='mt-6 flex items-center font-serif'
                   style={{ backgroundColor: '#005F8F', borderColor: '#005F8F' }}
-                  icon={<IoCartOutline className='mr-2' />}>
+                 >
                   Get Started
                 </Button>
               </motion.div>

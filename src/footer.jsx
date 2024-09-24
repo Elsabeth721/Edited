@@ -1,8 +1,9 @@
 import React from 'react'
 import landing from './assets/landing-Photoroom.png';
+import { section } from 'framer-motion/client';
 const Footer = () => {
   return (
-    <footer className='bg-[#2C3E50] font-serif'>
+    <footer className='bg-[hsl(210,65%,8%)] font-serif'>
         <div className='container py-14 '>
             <div className='grid grid-cols-1 md:grid-cols-3 gap-12 text-paragraphColor'>
                 <div className='space-y-3 lg:max-w-[300px]'>
@@ -15,10 +16,10 @@ const Footer = () => {
                     <div>
                     <h1 className='text-xl font-semibold'>Links</h1>
                     <ul className='space-y-3 mt-6'>
-                        <li className='footer-link'>Home</li>
-                        <li className='footer-link'>About</li>
-                        <li className='footer-link'>Contact-us</li>
-                        <li className='footer-link'>Menu</li>
+                        <li  className='footer-link'>Home</li>
+                        <li  className='footer-link'>Service</li>
+                        <li  className='footer-link'>Contact-us</li>
+                        <li className='footer-link'>About-us</li>
 
                     </ul>
                     </div>
@@ -51,7 +52,7 @@ const Footer = () => {
                   Prepared by Team 2 Kuraz Interns
                 </div>
                 <div>
-                    Copy right resererved @2024
+                    Copy right resererved team2@2024
                 </div>
             </div>
             
