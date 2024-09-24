@@ -34,7 +34,7 @@ const LandingPage = () => {
   }, []);
 
   return (
-    <main className='bg-navbarBackground min-h-screen flex justify-center gap-15 items-center px-20 mt-20'>
+    <main className='bg-[#001F3D] min-h-screen flex justify-center items-center px-20 mt-20'>
       <div className='container mx-auto py-16 px-4'>
         <Row gutter={24} align="middle">
           <Col span={24} md={12}>
