@@ -1,91 +1,120 @@
 import React, { useState } from 'react';
-import logo from './assets/logo.png';
+import { Menu } from 'antd';
+import computerIcon from './assets/people-with-laptop-computer-icon-in-flat-style-pc-user-check-mark-illustration-on-black-round-background-with-long-shadow-effect-office-manager-circle-button-busine.jpg';
 import { IoMenuOutline, IoCloseOutline } from 'react-icons/io5';
-import { motion } from 'framer-motion';
+
+const { Item } = Menu;
 
 const NavMenu = [
-  { id: 1, title: 'Home', target: 'home-section', delay: 0.1 },
-  { id: 2, title: 'Student', target: 'student-section', delay: 0.2 },
-  { id: 3, title: 'Admin', target: 'admin-section', delay: 0.3 },
-  { id: 4, title: 'Super-Admin', target: 'super-admin-section', delay: 0.4 },
-  { id: 5, title: 'About Us', target: 'about-us', delay: 0.5 },
+  { id: 1, title: 'Home', target: 'home-section' },
+  { id: 2, title: 'Student', target: 'student-section' },
+  { id: 3, title: 'Admin', target: 'admin-section' },
+  { id: 4, title: 'Super-Admin', target: 'super-admin-section' },
+  { id: 5, title: 'About Us', target: 'about-us' },
 ];
-
-const SlideDown = (delay) => ({
-  initial: { y: '-100%', opacity: 0 },
-  animate: {
-    y: '0',
-    opacity: 1,
-    transition: { duration: 0.8, delay: delay },
-  },
-});
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeMenu, setActiveMenu] = useState('Home');
 
-  const toggleMenu = () => {
-    setIsMenuOpen((prev) => !prev);
-  };
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const handleMenuClick = (menuItem) => setActiveMenu(menuItem.key);
 
   return (
-    <nav className="shadow-md bg-background">
-      <div className="container flex justify-between items-center font-serif py-2 md:py-4">
-        <motion.img
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          src={logo}
-          alt=""
-          className="w-32 h-20 md:w-36 md:h-24"
-        />
+    <nav className="bg-[#000F1F] fixed top-0 left-0 right-0 h-[14vh] z-50 shadow-md p-4 font-poppins">
+      <div className="flex justify-between sm:justify-evenly items-center h-full px-4 md:px-8">
+        <div className="flex items-center gap-2">
+          <img src={computerIcon} className="h-10 w-10 sm:h-12 sm:w-12 rounded-full" alt="Computer Icon" />
+        </div>
+
         <div className="hidden md:block">
-          <ul className="flex gap-6">
+          <Menu
+            mode="horizontal"
+            selectedKeys={[activeMenu]}
+            className="flex gap-3"
+            onClick={handleMenuClick}
+            style={{ backgroundColor: 'transparent' }} // Set menu background to transparent
+          >
             {NavMenu.map((menu) => (
-              <motion.li
-                variants={SlideDown(menu.delay)}
-                initial="initial"
-                animate="animate"
-                key={menu.id}
-                className="nav-menu inline-block px-2 py-2 text-xl md:text-2xl text-paragraphColor"
-                data-delay={menu.delay}
+              <Item 
+                key={menu.title} 
+                style={{ backgroundColor: 'transparent' }} // Set item background to transparent
+                className="text-lg md:text-xl"
               >
-                <a href={`#${menu.target}`} className="inline-block px-2 py-2 text-xl md:text-2xl">
+                <a
+                  href={`#${menu.target}`}
+                  style={{
+                    display: 'inline-block',
+                    padding: '8px 16px',
+                    color: 'white', // Set text color to white
+                    fontWeight: 'bold', // Make text bold
+                    textDecoration: 'none',
+                    borderBottom: activeMenu === menu.title || isMenuOpen ? '4px solid #00AED9' : 'none', // Unified border color
+                  }}
+                  onMouseOver={(e) => {
+                    e.currentTarget.style.color = '#00AED9'; // Change color on hover
+                    e.currentTarget.style.borderBottom = '4px solid #00AED9'; // Set border color on hover
+                  }} 
+                  onMouseOut={(e) => {
+                    e.currentTarget.style.color = 'white'; // Reset color
+                    e.currentTarget.style.borderBottom = activeMenu === menu.title ? '4px solid #00AED9' : 'none'; // Reset border
+                  }} 
+                >
                   {menu.title}
                 </a>
-              </motion.li>
+              </Item>
             ))}
-          </ul>
+          </Menu>
         </div>
-        <div className="flex items-center gap-4">
-          <button className="md:hidden text-2xl" onClick={toggleMenu}>
-            {isMenuOpen ? <IoCloseOutline /> : <IoMenuOutline />}
-          </button>
-        </div>
-      </div>
-      {isMenuOpen && (
-        <motion.div
-          className="md:hidden"
-          initial={{ height: 0, opacity: 0 }}
-          animate={{ height: 'auto', opacity: 1, transition: { duration: 0.5 } }}
-          exit={{ height: 0, opacity: 0, transition: { duration: 0.5 } }}
+
+        <button
+          className="md:hidden text-xl text-white"
+          onClick={toggleMenu}
+          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
         >
-          <ul className="flex flex-col gap-4 px-4 py-6 shadow-md">
+          {isMenuOpen ? <IoCloseOutline /> : <IoMenuOutline />}
+        </button>
+      </div>
+
+      {isMenuOpen && (
+        <div className="md:hidden absolute top-[10vh] left-0 right-0 bg-[#000F1F] shadow-md">
+          <Menu
+            mode="vertical"
+            selectedKeys={[activeMenu]}
+            className="flex flex-col gap-4 px-4 py-6"
+            onClick={handleMenuClick}
+            style={{ backgroundColor: 'transparent' }} // Set menu background to transparent
+          >
             {NavMenu.map((menu) => (
-              <motion.li
-                variants={SlideDown(menu.delay)}
-                initial="initial"
-                animate="animate"
-                key={menu.id}
-                className="nav-menu inline-block px-2 py-2 text-xl list-none text-paragraphColor"
-                data-delay={menu.delay}
+              <Item 
+                key={menu.title} 
+                style={{ backgroundColor: 'transparent' }} // Set item background to transparent
               >
-                <a href={`#${menu.target}`} className="inline-block px-2 py-2 text-xl">
+                <a
+                  href={`#${menu.target}`}
+                  style={{
+                    display: 'inline-block',
+                    padding: '8px 16px',
+                    color: 'white', // Set text color to white
+                    fontWeight: 'bold', // Make text bold
+                    textDecoration: 'none',
+                    borderBottom: activeMenu === menu.title ? '4px solid #00AED9' : 'none', // Unified border color
+                  }}
+                  onMouseOver={(e) => {
+                    e.currentTarget.style.color = '#00AED9'; // Change color on hover
+                    e.currentTarget.style.borderBottom = '4px solid #00AED9'; // Set border color on hover
+                  }} 
+                  onMouseOut={(e) => {
+                    e.currentTarget.style.color = 'white'; // Reset color
+                    e.currentTarget.style.borderBottom = activeMenu === menu.title ? '4px solid #00AED9' : 'none'; // Reset border
+                  }} 
+                >
                   {menu.title}
                 </a>
-              </motion.li>
+              </Item>
             ))}
-          </ul>
-        </motion.div>
+          </Menu>
+        </div>
       )}
     </nav>
   );
